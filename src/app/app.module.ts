@@ -16,13 +16,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MenuComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
