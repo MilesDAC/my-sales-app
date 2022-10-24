@@ -20,6 +20,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
+import { FormComponent } from './categories/form/form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -27,7 +33,8 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     MenuComponent,
     CategoriesComponent,
-    DashboardComponent
+    DashboardComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,13 @@ import { MatMenuModule } from '@angular/material/menu';
     AppRoutingModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

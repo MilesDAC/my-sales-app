@@ -8,6 +8,9 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 export interface CategoriesItem {
   name: string;
   id: number;
+  /*
+  * ADDED TO MAKE NEW CONTENT WORK
+  */
 }
 
 // TODO: replace this with real data from your application
@@ -31,7 +34,7 @@ const EXAMPLE_DATA: CategoriesItem[] = [
   {id: 17, name: 'Chlorine'},
   {id: 18, name: 'Argon'},
   {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+  {id: 20, name: 'Calcium'}, 
 ];
 
 /**

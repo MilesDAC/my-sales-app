@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Category } from './category.dto';
+import { CategoryService } from './category.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,22 +15,28 @@ import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
     
   `]
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
-  dataSource: CategoriesDataSource;
+  @ViewChild(MatTable) table!: MatTable<Category>;
+  
+  dataSource!: MatTableDataSource<Category>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  // RE_ADD DESCRIPTION LATER
+  displayedColumns = ['id', 'name', 'description'];
 
-  constructor() {
-    this.dataSource = new CategoriesDataSource();
-  }
+  constructor(private categoryService: CategoryService) { }
+  
+  ngOnInit(): void {
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.categoryService.getAll().subscribe(
+      categories => {
+        this.dataSource = new MatTableDataSource(categories);
+        this.table.dataSource = this.dataSource;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+    )
   }
 }
