@@ -19,5 +19,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onSubmit(){
+    console.log("submit on form.component.ts", this.categoryForm.value)
+  }
 
 }
