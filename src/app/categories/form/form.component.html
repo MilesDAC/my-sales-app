@@ -20,10 +20,19 @@
         </div>
         
         <button 
-            mat-raised-button colors="primary"
+            mat-raised-button color="primary"
             type="submit"
-            [disabled]="!categoryForm.valid">
-        Submit</button>
+            [disabled]="!categoryForm.valid"
+        >Save</button>
 
     </form>
+
+    <mat-card-actions>
+        <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="onBack()"
+        >Back</button>
+    </mat-card-actions>
 </mat-card-content>

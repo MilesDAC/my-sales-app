@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { Category } from '../category.dto'
 
 @Component({
   selector: 'categoty-form',
@@ -9,8 +9,12 @@ import { Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
+  @Output() back = new EventEmitter();
+
+  @Output() save = new EventEmitter<Category>();
+  
   categoryForm = new FormGroup({
-    id: new FormGroup(''),
+    id: new FormGroup(0),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl('')
   })
@@ -19,8 +23,14 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSubmit(){
+  
+  onSubmit() {
     console.log("submit on form.component.ts", this.categoryForm.value)
+    this.save.emit(this.categoryForm.value as Category);
+  }
+
+  onBack(){
+    this.back.emit();
   }
 
 }

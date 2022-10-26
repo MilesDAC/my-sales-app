@@ -26,10 +26,34 @@ export class CategoriesComponent implements OnInit {
   // RE_ADD DESCRIPTION LATER
   displayedColumns = ['id', 'name', 'description'];
 
+  showForm: boolean = false;
+
   constructor(private categoryService: CategoryService) { }
   
   ngOnInit(): void {
+    this.refreshData();
+  }
 
+  onNewCategoryClick(){
+    this.showForm = true;
+  }
+
+  onBackForm(){
+    this.showForm = false;
+    this.refreshData();
+  }
+
+  onSave(category:Category){
+    console.log("save on category.component.ts", category)
+
+    this.categoryService.save(category).subscribe((categorySaved => {
+      console.log('Category saved:', categorySaved);
+      this.showForm = false;
+      this.refreshData();
+    }))
+  }
+
+  refreshData() {
     this.categoryService.getAll().subscribe(
       categories => {
         this.dataSource = new MatTableDataSource(categories);
