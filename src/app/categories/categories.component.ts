@@ -24,9 +24,10 @@ export class CategoriesComponent implements OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   // RE_ADD DESCRIPTION LATER
-  displayedColumns = ['id', 'name', 'description'];
+  displayedColumns = ['id', 'name', 'description', 'actions'];
 
   showForm: boolean = false;
+  category!: Category;
 
   constructor(private categoryService: CategoryService) { }
   
@@ -34,10 +35,7 @@ export class CategoriesComponent implements OnInit {
     this.refreshData();
   }
 
-  onNewCategoryClick(){
-    this.showForm = true;
-  }
-
+  
   onBackForm(){
     this.showForm = false;
     this.refreshData();
@@ -45,12 +43,37 @@ export class CategoriesComponent implements OnInit {
 
   onSave(category:Category){
     console.log("save on category.component.ts", category)
-
+    
     this.categoryService.save(category).subscribe((categorySaved => {
       console.log('Category saved:', categorySaved);
       this.showForm = false;
       this.refreshData();
-    }))
+    }));
+  }
+  
+  onEditCategoryClick(category:Category){
+    console.log("edit category", category)
+    this.showForm = true;
+    this.category = category;
+  }
+  
+  onNewCategoryClick(){
+    this.category = {
+      id: 0,
+      name: '',
+      description: ''
+    }
+    this.showForm = true;
+  }
+
+  onDeleteCategoryClick(category:Category){
+    console.log("delete category", category)
+
+    if(confirm(`Delete "${category.name}" with id ${category.id} ?`)){
+      this.categoryService.delete(category.id).subscribe( 
+        () => this.refreshData()
+      )
+    }
   }
 
   refreshData() {

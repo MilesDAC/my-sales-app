@@ -27,5 +27,9 @@ export class CategoryService {
       );
   }
 
+  public delete(id: number){
+    return this.http.delete(environment.api + 'categories/' + id);
+  }
+
 }
 

@@ -22,8 +22,11 @@
         <button 
             mat-raised-button color="primary"
             type="submit"
+            (click)="onSubmit()"
             [disabled]="!categoryForm.valid"
-        >Save</button>
+        >
+        Save
+        </button>
 
     </form>
 
