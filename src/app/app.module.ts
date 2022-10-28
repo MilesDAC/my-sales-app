@@ -29,6 +29,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingBarComponent } from './loading-bar.component';
 import { CategoriesLoadingAsyncComponent } from './categories/categories-loading-async/categories-loading-async.component';
+import { SuppliersComponent } from './suppliers/suppliers.component';
+import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
+import { SuppliersEditComponent } from './suppliers/suppliers-edit/suppliers-edit.component';
+import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
+import { SuppliersFormComponent } from './suppliers/suppliers-form/suppliers-form.component';
+import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
+import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,14 @@ import { CategoriesLoadingAsyncComponent } from './categories/categories-loading
     DashboardComponent,
     FormComponent,
     LoadingBarComponent,
-    CategoriesLoadingAsyncComponent
+    CategoriesLoadingAsyncComponent,
+    SuppliersComponent,
+    SuppliersListComponent,
+    SuppliersEditComponent,
+    SuppliersNewComponent,
+    SuppliersFormComponent,
+    SuppliersDeleteComponent,
+    SuppliersShowComponent
   ],
   imports: [
     BrowserModule,
