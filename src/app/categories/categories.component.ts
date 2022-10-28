@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Category } from './category.dto';
 import { CategoryService } from './category.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -27,6 +28,9 @@ export class CategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name', 'description', 'actions'];
 
   showForm: boolean = false;
+  showLoading: boolean = false;
+  showLoadingForm: boolean = false;
+  
   category!: Category;
 
   constructor(private categoryService: CategoryService) { }
@@ -34,7 +38,6 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.refreshData();
   }
-
   
   onBackForm(){
     this.showForm = false;
@@ -43,11 +46,13 @@ export class CategoriesComponent implements OnInit {
 
   onSave(category:Category){
     console.log("save on category.component.ts", category)
-    
+    this.showLoadingForm = true;
+
     this.categoryService.save(category).subscribe((categorySaved => {
       console.log('Category saved:', categorySaved);
       this.showForm = false;
       this.refreshData();
+      this.showLoadingForm = false;
     }));
   }
   
@@ -76,14 +81,30 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  refreshData() {
+  async refreshData() {
+    this.showLoading = true;
+
+    /* 
     this.categoryService.getAll().subscribe(
       categories => {
         this.dataSource = new MatTableDataSource(categories);
-        this.table.dataSource = this.dataSource;
+        //this.table.dataSource = this.dataSource;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.showLoading = false;
       }
-    )
+    ) */
+    try{
+      const categories: Category[] = await lastValueFrom(
+        this.categoryService.getAll()
+      );
+      this.dataSource = new MatTableDataSource(categories);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    } catch (error){
+      console.log("jinkies!", error);
+    } finally{
+      this.showLoading = false;
+    }
   }
 }
