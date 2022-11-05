@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { lastValueFrom, Observable } from 'rxjs';
+import { Supplier } from '../supplier.dto';
+import { SupplierService } from '../supplier.service';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -8,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuppliersListComponent implements OnInit {
 
-  constructor() { }
+  suppliers!: Supplier[];
+  supplierObservable!: Observable<Supplier[]>;
 
-  ngOnInit(): void {
+  constructor(private supplierService: SupplierService) { }
+
+  async ngOnInit() {
+    this.supplierObservable = this.supplierService.getAll();
+    this.suppliers = await lastValueFrom(this.supplierObservable);
   }
 
 }

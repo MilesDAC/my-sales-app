@@ -1,1 +1,20 @@
-<p>suppliers-edit works!</p>
+<mat-card>
+    <mat-card-title>Edit Supplier</mat-card-title>
+    <br/>
+    <mat-card-content *ngIf="supplierObservable | async; else loading">
+
+    </mat-card-content>
+
+    <ng-template #loading>
+        <app-loading-bar [visible]="true"></app-loading-bar>
+    </ng-template>
+
+    <mat-card-actions>
+        <button mat-button
+            [routerLink]="['/suppliers/show/',supplier?.id]"
+        >
+            Back
+        </button>
+    </mat-card-actions>
+
+</mat-card>>

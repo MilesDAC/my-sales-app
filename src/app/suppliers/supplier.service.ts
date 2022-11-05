@@ -12,7 +12,7 @@ export class SupplierService {
   constructor(private http: HttpClient) { }
 
   public getAll(): Observable<Supplier[]> {
-    return this.http.get<Supplier[]>(environment.api + 'suppliers/');
+    return this.http.get<Supplier[]>(environment.api + 'suppliers');
   }
 
   public getById(id: Number): Observable<Supplier> {
