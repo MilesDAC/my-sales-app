@@ -15,11 +15,30 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <span>Sales App</span>
+
+      <div class="spacer"></div>
+
+      <!--Cart Button-->
+      <button mat-icon-button
+        [routerLink]="['/checkout']"
+      >
+        <mat-icon 
+          [matBadge]="cartService.itemsInCart" 
+          matBadgeColor="warn"
+        >
+          shopping_cart
+        </mat-icon>
+      </button>
+
     </mat-toolbar>
+    
     <!-- Add Content Here -->
     <div class="m-20">
       <router-outlet></router-outlet>
     </div>
+
   </mat-sidenav-content>
+
 </mat-sidenav-container>

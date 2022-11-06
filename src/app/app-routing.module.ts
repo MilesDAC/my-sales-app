@@ -9,9 +9,11 @@ import { SuppliersEditComponent } from './suppliers/suppliers-edit/suppliers-edi
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
 import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
-  {path:'', component:DashboardComponent},
   {path:'categories', component:CategoriesComponent},
   {path:'categories-async', component: CategoriesLoadingAsyncComponent},
   {
@@ -40,8 +42,15 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', component: DashboardComponent }
-]
+  { path: '', component: ProductsComponent, children: [
+      {
+        path:'',
+        component: ProductsListComponent
+      }
+    ] 
+  },
+  {path: 'checkout', component: CheckoutComponent}
+];
 
 @NgModule({
   declarations: [],

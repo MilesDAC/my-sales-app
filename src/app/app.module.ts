@@ -37,6 +37,9 @@ import { SuppliersFormComponent } from './suppliers/suppliers-form/suppliers-for
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import { ProductsComponent } from './products/products.component';
     SuppliersFormComponent,
     SuppliersDeleteComponent,
     SuppliersShowComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsListComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { ProductsComponent } from './products/products.component';
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
