@@ -36,6 +36,7 @@ import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.c
 import { SuppliersFormComponent } from './suppliers/suppliers-form/suppliers-form.component';
 import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers-delete.component';
 import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-show.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SuppliersShowComponent } from './suppliers/suppliers-show/suppliers-sho
     SuppliersNewComponent,
     SuppliersFormComponent,
     SuppliersDeleteComponent,
-    SuppliersShowComponent
+    SuppliersShowComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
