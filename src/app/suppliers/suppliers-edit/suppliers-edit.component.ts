@@ -28,4 +28,10 @@ export class SuppliersEditComponent implements OnInit {
     this.supplier = await lastValueFrom(this.supplierObservable);
   }
 
+  async onSave(supplier: Supplier) {
+    this.supplierObservable = this.supplierService.save(supplier);
+    this.supplier = await lastValueFrom(this.supplierObservable);
+    this.router.navigate(['/suppliers/show/',supplier?.id]);
+  }
+
 }
